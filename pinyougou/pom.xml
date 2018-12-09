@@ -15,7 +15,7 @@
         <module>pinyougou-sellergoods</module>
         <module>pinyougou-manage-web</module>
     </modules>
-    <!-- 集中定义依赖版本号 -->
+    <!-- 集中定义依赖版本号 test-->
     <properties>
         <junit.version>4.12</junit.version>
         <spring.version>4.3.10.RELEASE</spring.version>

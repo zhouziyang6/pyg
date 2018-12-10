@@ -17,6 +17,13 @@ public class BrandController {
     //注入代理对象
     @Reference
     private BrandService brandService;
+
+    @GetMapping("/testPage")
+    public List<TbBrand> testPage(Integer page,Integer rows){
+        //return brandService.testPage(page,rows);
+        return (List<TbBrand>) brandService.findPage(page,rows).getRows();
+    }
+
     /**
      * 查询品牌列表
      * @return 品牌列表json格式字符串
@@ -25,7 +32,7 @@ public class BrandController {
     @ResponseBody*/
     @GetMapping("/findAll")
     public List<TbBrand> findAll(){
-
-        return brandService.queryAll();
+        //return brandService.queryAll();
+        return brandService.findAll();
     }
 }

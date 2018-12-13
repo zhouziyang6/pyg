@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularJS测试</title>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript">
+        //创建angular模块
+        var app = angular.module("app", []);
+
+        //注册处理器,名称为myController,注入$scope上下文服务
+        app.controller("myController", function ($scope, $http) {
+            $scope.findPersons = function () {
+                $http.get("data.json")
+                    .success(function (response) {
+                        $scope.persons = response;
+                    })
+                    .error(function (response) {
+                        alert("访问资源失败..");
+                    })
+            }
+        })
+
+    </script>
+
+</head>
+
+<!--ng-click 点击事件-->
+<body ng-app="app" ng-controller="myController" ng-init="findPersons()">
+
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>性别</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="p in persons">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.gender}}</td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularJS测试</title>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript">
+        //创建angular模块
+        var app = angular.module("app",[]);
+
+        //注册处理器,名称为myController,注入$scope上下文服务
+        app.controller("myController",function ($scope) {
+            $scope.list=[1,2,3,4,5]
+            $scope.persons=[
+                {"id":100,"name":"传智播客","gender":"男"},
+                {"id":102,"name":"Java","gender":"女"},
+                {"id":103,"name":"黑马","gender":"男"}
+            ]
+        })
+
+    </script>
+
+</head>
+
+<!--ng-click 点击事件-->
+<body ng-app="app" ng-controller="myController">
+简单的数值集合遍历
+<div ng-repeat="num in list">
+    {{num}}<br>
+</div>
+<br>
+自定义对象集合遍历: <br>
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>性别</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="p in persons">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.gender}}</td>
+    </tr>
+</table>
+
+
+</body>
+</html>

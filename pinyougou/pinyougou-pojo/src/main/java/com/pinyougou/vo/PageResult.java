@@ -3,6 +3,9 @@ package com.pinyougou.vo;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 返回分页结果类
+ */
 public class PageResult implements Serializable {
     private long total;//总记录数
     private List<?> rows;//记录列表

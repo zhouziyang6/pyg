@@ -82,9 +82,9 @@
 			                              <td><input type="checkbox" ng-click="updateSelection($event, entity.id)"></td>
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.name}}</td>
-									      <td>{{jsonToString(entity.brandIds, 'text')}}</td>
-									      <td>{{jsonToString(entity.specIds, 'text')}}</td>
-									      <td>{{jsonToString(entity.customAttributeItems, 'text')}}</td>
+									      <td>{{jsonToString(entity.brandIds, "text")}}</td>
+									      <td>{{jsonToString(entity.specIds, "text")}}</td>
+									      <td>{{jsonToString(entity.customAttributeItems, "text")}}</td>
 		                                  <td class="text-center">                                           
 		                                 	  <button type="button" ng-click="findOne(entity.id)" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>
 		                                  </td>
@@ -123,6 +123,7 @@
 		      	</tr>			   
 		      	<tr>
 		      		<td>关联品牌</td>
+					{{entity}}
 		      		<td>
 		      			<input select2 select2-model="entity.brandIds" config="brandList" multiple placeholder="选择品牌（可多选）" class="form-control" type="text"/>
 		      		</td>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/brand")
 //@Controller //test//11
@@ -86,7 +87,7 @@ public class BrandController {
     @GetMapping("/delete")
     public Result delete(Long[] ids) {
         try {
-            brandService.daletaByIds(ids);
+            brandService.deleteByIds(ids);
             return Result.ok("删除成功");
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,4 +103,13 @@ public class BrandController {
                              @RequestParam(value = "rows", defaultValue = "10") Integer rows) {
         return brandService.search(brand, page, rows);
     }
+
+    /**
+     * 查询品牌数据 返回符合select2格式的数据
+     */
+    @GetMapping("/selectOptionList")
+    public List<Map<String,String>> selectOptionList(){
+        return brandService.selectOptionList();
+    }
+
 }

@@ -107,7 +107,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
      * @param ids 主键集合
      */
     @Override
-    public void daletaByIds(Serializable[] ids) {
+    public void deleteByIds(Serializable[] ids) {
         if (ids!=null&&ids.length>0){
             for (Serializable id : ids) {
                 mapper.deleteByPrimaryKey(id);

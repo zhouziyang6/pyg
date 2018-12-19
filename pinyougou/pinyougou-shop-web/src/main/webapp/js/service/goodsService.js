@@ -33,4 +33,10 @@ app.service("goodsService",function ($http) {
     this.updateStatus = function (selectedIds, status) {
         return $http.get("../goods/updateStatus.do?ids=" + selectedIds + "&status=" + status);
     };
+    this.itemUpshelf = function (selectedIds) {
+        return $http.get("../goods/itemUpshelf.do?ids=" + selectedIds);
+    };
+    this.soldOut = function (selectedIds) {
+        return $http.get("../goods/soldOut.do?ids=" + selectedIds);
+    };
 });

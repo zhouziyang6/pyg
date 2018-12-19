@@ -85,7 +85,7 @@
                                                             ng-options="item.id as item.name for item in itemCat3List"></select>
 		                              			</td>
 		                              			<td>
-		                           	  				模板ID:{{entity.goods.typeTemplateId}}
+		                           	  				模板ID:<span ng-if="itemCat3List!=''">{{entity.goods.typeTemplateId}}</span>
 		                              			</td>
 		                           	  		</tr>
 		                           	  	</table>

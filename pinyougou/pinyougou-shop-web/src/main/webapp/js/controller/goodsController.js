@@ -134,6 +134,7 @@ app.controller("goodsController", function ($scope, $controller, $location, good
     //读取二级商品分类列表
     $scope.$watch("entity.goods.category1Id", function (newValue, oldValue) {
         $scope.itemCat3List = [];
+        $scope.typeTemplate={};
         //$scope.entity.goods.typeTemplateId = {};
         if (newValue != undefined) {
             itemCatService.findByParentId(newValue).success(function (response) {

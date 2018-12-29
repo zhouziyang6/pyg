@@ -72,7 +72,7 @@ public class TbItem implements Serializable {
     @Field("item_seller")
     private String seller;
 
-    @Dynamic
+    @Dynamic//动态域
     @Field("item_spec_*")
     private Map<String, String> specMap;
 

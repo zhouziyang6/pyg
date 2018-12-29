@@ -36,6 +36,7 @@ public class GoodsController {
             String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
             goods.getGoods().setSellerId(sellerId);
             goods.getGoods().setAuditStatus("0");//未申请审核
+            goods.getGoods().setIsMarketable("1");//默认上架,增加后审核通过就会上架,
             goodsService.addGoods(goods);
             return Result.ok("增加成功");
         } catch (Exception e) {
@@ -55,7 +56,7 @@ public class GoodsController {
             //校验商家
             TbGoods oldGoods = goodsService.findOne(goods.getGoods().getId());
             String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
-            if (!sellerId.equals(oldGoods.getSellerId()) || sellerId.equals(goods.getGoods().getSellerId())) {
+            if (!sellerId.equals(oldGoods.getSellerId()) || !sellerId.equals(goods.getGoods().getSellerId())) {
                 return Result.fail("修改非法");
             }
             goodsService.updateGoods(goods);
@@ -69,7 +70,7 @@ public class GoodsController {
     @GetMapping("/delete")
     public Result delete(Long[] ids) {
         try {
-            goodsService.deleteGoodsByIds(ids);
+            goodsService.deleteGoodsByIds(ids);//逻辑删除
             return Result.ok("删除成功");
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,12 +119,13 @@ public class GoodsController {
                     goods.getGoods().getId()
                 }
             }*/
+
             List list = new ArrayList<>();
             for (Long id : ids) {
                 Goods goods = goodsService.findGoodsById(id);
-                if ("2".equals(goods.getGoods().getAuditStatus())) {
+                /*if ("2".equals(goods.getGoods().getAuditStatus())) {
+                }增加这个以后solr更新受影响,只需要增加商品时候默认是上架状态,,就算未审核也是上架状态,因为未审核的商品也无法上架*/
                     list.add(id);
-                }
             }
             ids = (Long[]) list.toArray(new Long[list.size()]);
             goodsService.itemUpshelf(ids);

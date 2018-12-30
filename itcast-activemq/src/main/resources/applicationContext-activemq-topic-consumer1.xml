@@ -15,21 +15,21 @@
         <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
         <!-- 消费者标识 -->
         <property name="clientId" value="topic-consumer-a"/>
-    </bean>
+    </bean><!--不用配置Template 因为不用发送消息-->
 
     <!--订阅模式，一对多的 -->
     <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
         <constructor-arg value="topic.item"/>
-    </bean>
+    </bean><!--模式配置和生产者一样-->
 
     <!-- messageListener实现类 -->
-    <bean id="topicMessageListener1" class="cn.itcast.activemq.spring.topic.TopicMessageListener1"/>
+    <bean id="topicMessageListener1" class="cn.itcast.activemq.spring.topic.TopicMessageListener1"/><!--配置用于处理消息的类-->
 
     <!-- 配置一个jms监听容器 -->
     <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-        <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="destination" ref="topicDestination"/>
-        <property name="messageListener" ref="topicMessageListener1"/>
+        <property name="connectionFactory" ref="connectionFactory"/><!--管理 生产factory-->
+        <property name="destination" ref="topicDestination"/><!--订阅者标识-->
+        <property name="messageListener" ref="topicMessageListener1"/><!--接收消息的类-->
         <!-- 消息持久化 -->
         <property name="subscriptionDurable" value="true"/>
         <!-- 消费者标识 -->
@@ -42,6 +42,6 @@
         <property name="sessionTransacted" value="false"/>
         <!-- 客户端消息确认模式名称 -->
         <property name="sessionAcknowledgeModeName" value="CLIENT_ACKNOWLEDGE"/>
-    </bean>
+    </bean><!--需要接收消息 需要配置监听器-->
 
 </beans>

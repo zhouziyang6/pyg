@@ -34,8 +34,8 @@ public class Producer {
 
 		// 6. 从session中获取消息的生产者
 		MessageProducer producer = session.createProducer(topic);
-		//设置为持久化方式消息
-		producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+		//设置为持久化方式消息 (为你而留)
+		producer.setDeliveryMode(DeliveryMode.PERSISTENT);//发布与订阅默认是不持久化的，需要设置持久化如果消费者不在线的话会在消费者上线后发送消息
 
 		// 7. 创建消息体 使用TextMessage类型
 		TextMessage textMessage = new ActiveMQTextMessage();

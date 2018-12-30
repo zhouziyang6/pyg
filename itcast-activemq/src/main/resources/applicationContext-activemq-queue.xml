@@ -8,33 +8,36 @@
     <!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供 -->
     <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://192.168.12.168:61616"/>
-    </bean>
+    </bean><!--连接-->
 
     <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
     <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
         <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
         <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
-    </bean>
+    </bean><!--管理-->
 
     <!-- Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
         <property name="connectionFactory" ref="connectionFactory"/>
-    </bean>
+    </bean><!--获得核心对象jmsTemplate-->
 
     <!--队列模式，点对点的 -->
     <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="spring_queue"/>
-    </bean>
+    </bean><!--队列模式 可以更改value-->
+
+
+    <!--需要接收消息配置以下-->
 
     <!-- messageListener实现类 -->
-    <bean id="queueMessageListener" class="cn.itcast.activemq.spring.queue.QueueMessageListener"/>
+    <bean id="queueMessageListener" class="cn.itcast.activemq.spring.queue.QueueMessageListener"/><!--消费者 自己创建的用于接收消息-->
 
     <!-- 配置一个jms监听容器 -->
     <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-        <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="destination" ref="queueDestination"/>
-        <property name="messageListener" ref="queueMessageListener"/>
-    </bean>
+        <property name="connectionFactory" ref="connectionFactory"/><!--配置工具 jmsTemplate-->
+        <property name="destination" ref="queueDestination"/><!--配置队列模式-->
+        <property name="messageListener" ref="queueMessageListener"/><!--配置消费者-->
+    </bean><!-- 因为需要接收消息 所以才配这个 实际项目不需要配置-->
 
 </beans>

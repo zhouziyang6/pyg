@@ -36,7 +36,7 @@ public class Consumer {
 		MessageConsumer consumer = session.createConsumer(queue);
 
 		// 7.接受消息
-		while (true) {
+		/*while (true) {
 			// 参数表示接受消息等待的时间，单位是毫秒
 			Message message = consumer.receive(2000);
 
@@ -48,11 +48,11 @@ public class Consumer {
 				// 8. 消费消息，打印消息内容
 				System.out.println("消费者接收到消息：" + textMessage.getText());
 			}
-		}
+		}*/
 
 		// 使用监听器接收消息
 		// 使用监听的方式接收消息，其实是创建了一个新的线程来处理消息的接收
-/*		consumer.setMessageListener(new MessageListener() {
+		consumer.setMessageListener(new MessageListener() {
 
 			@Override
 			public void onMessage(Message message) {
@@ -79,7 +79,6 @@ public class Consumer {
 		consumer.close();
 		session.close();
 		connection.close();
-*/	
 	}
 
 }

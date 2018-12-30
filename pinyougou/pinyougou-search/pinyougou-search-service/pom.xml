@@ -7,7 +7,6 @@
     <version>1.0-SNAPSHOT</version> 
   </parent>  
   <modelVersion>4.0.0</modelVersion>  
-  <groupId>com.pinyougou</groupId>  
   <artifactId>pinyougou-search-service</artifactId>
   <packaging>war</packaging>
 
@@ -60,6 +59,17 @@
       <artifactId>pinyougou-common</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
+    <!-- ActiveMQ 依赖 -->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-client</artifactId>
+    </dependency>
+    <!-- 加入 spring-jms 依赖 -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jms</artifactId>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

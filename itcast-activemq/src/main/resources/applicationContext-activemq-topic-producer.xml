@@ -21,12 +21,12 @@
         <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
         <property name="connectionFactory" ref="connectionFactory"/>
         <!-- 订阅模式 -->
-        <property name="pubSubDomain" value="true"/>
-    </bean>
+        <property name="pubSubDomain" value="true"/><!--true 表示这个是发布与订阅模式-->
+    </bean><!--不用接受消息 所以不用配置监听器-->
 
     <!--订阅模式，一对多 -->
     <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
-        <constructor-arg value="topic.item"/>
+        <constructor-arg value="topic.item"/><!--配置模式-->
     </bean>
 
 </beans>

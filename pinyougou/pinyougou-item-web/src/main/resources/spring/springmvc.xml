@@ -47,6 +47,6 @@
     <!--注册中心信息-->
     <dubbo:registry address="zookeeper://192.168.12.168:2181"/>
     <!--扫描阿里dubbo的注解的包路径-->
-    <dubbo:annotation package="com.pinyougou.item.controller"/>
+    <dubbo:annotation package="com.pinyougou.item"/>
 
 </beans>
